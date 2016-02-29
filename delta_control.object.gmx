@@ -25,11 +25,17 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// define variables + calculates room_speed and global.delta
+            <string>/// Define Globals and Variables
+//Editable
+fps_min = 50; // speed the game runs at
+fps_max = 0; // the maximum visual speed the game will run at (0 to uncap)
+global.delta_fp_scale = 10000; // fixes floating point errors
+
+//Un-Editable
 global.delta = 0; // define delta
 global.delta_last = 0; // define delta_last
 global.delta_processed_list = ds_list_create(); // define id processed list
-fps_max = 50; // define max amount of fps the game runs at
+
 event_user(0); // calculate delta
 </string>
           </argument>
@@ -78,19 +84,61 @@ event_user(0);
           <argument>
             <kind>1</kind>
             <string>/// update room_speed &amp; delta
-if (fps_real &gt;= fps_max) {
+
+if (fps_max != 0) {
+    global.delta_last = global.delta;
+    
+    if fps_real &gt;= fps_max { 
+    
+        room_speed = fps_max; 
+        global.delta = fps_min / fps_max 
+        
+    } else if (fps_real &lt; fps_max) &amp;&amp; (fps_real &gt; fps_min) { 
+    
+        room_speed = fps_real; 
+        global.delta = fps_min/1000000*delta_time } 
+        
+    else if (fps_real &lt;= fps_min) { 
+    
+        room_speed = fps_min; 
+        global.delta = 1
+        
+    }
+    
+    global.delta_fp_scale = global.delta
+    
+} else {
+    global.delta_last = global.delta;
+    
+    if (fps_real &gt;= fps_min) {
+    
+        room_speed = fps_real;
+        global.delta = fps_min/1000000*delta_time;
+        
+    } else {
+    
+        room_speed = fps_min;
+        global.delta = 1;
+        
+    }
+}
+
+global.delta = min(1, global.delta);
+
+/*
+if (fps_real &gt;= fps_min) {
     room_speed = fps_real;
 } else { 
-    room_speed = fps_max
+    room_speed = fps_min
 }
 
 global.delta_last = global.delta; // set delta_last to old delta before changing
 
-if (fps_real &gt;= fps_max) {
-    global.delta = fps_max/1000000*delta_time;
-    global.delta = min(1, global.delta);
+if (fps_real &gt;= fps_min) {
+    global.delta = fps_min/1000000*delta_time; //natural delta
+    global.delta = min(1, global.delta); // prevents paused events from making things go haywire
 } else {
-    global.delta = 1
+    global.delta = 1 // if below fps_min
 }
 </string>
           </argument>
