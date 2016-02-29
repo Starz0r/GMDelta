@@ -28,8 +28,8 @@
             <string>/// Define Globals and Variables
 //Editable
 fps_min = 50; // speed the game runs at
-fps_max = 0; // the maximum visual speed the game will run at (0 to uncap)
-global.delta_fp_scale = 10000; // fixes floating point errors
+fps_max = 120; // the maximum visual speed the game will run at (0 to uncap which is not recommended)
+time_scale = 1; //the speed at which the game runs. 1.0 is normal, 0.5 is half speed, 2.0 is double speed - does not work properly with uncapped****
 
 //Un-Editable
 global.delta = 0; // define delta
@@ -123,23 +123,9 @@ if (fps_max != 0) {
     }
 }
 
-global.delta = min(1, global.delta);
-
-/*
-if (fps_real &gt;= fps_min) {
-    room_speed = fps_real;
-} else { 
-    room_speed = fps_min
-}
-
-global.delta_last = global.delta; // set delta_last to old delta before changing
-
-if (fps_real &gt;= fps_min) {
-    global.delta = fps_min/1000000*delta_time; //natural delta
-    global.delta = min(1, global.delta); // prevents paused events from making things go haywire
-} else {
-    global.delta = 1 // if below fps_min
-}
+room_speed *= time_scale;
+global.delta *= time_scale;
+global.delta = min(1*time_scale, global.delta);
 </string>
           </argument>
         </arguments>
