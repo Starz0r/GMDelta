@@ -1,4 +1,4 @@
-///scrDeltaRevert(variable);
+///scrDeltaRevertBasic(variable);
 //reverts delta on a sepcific
 if (global.delta_last != 0) {
     vspeed /= global.delta_last;
