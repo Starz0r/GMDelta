@@ -1,2 +1,2 @@
 ///scrDeltaClockCreate();
-clock = ds_grid_create(15, 15);
+clock = ds_grid_create(3, 12);

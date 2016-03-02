@@ -1,6 +1,5 @@
 ///scrDeltaClockStep(); 
-
-for (var i=0;i<=15;i++)
+for (var i=0;i<=11;i++)
 {
     if (ds_grid_get(clock, 1, i) == true)
     {
@@ -14,7 +13,7 @@ for (var i=0;i<=15;i++)
         if (ds_grid_get(clock, 1, i) == true)
         {
             ds_grid_set(clock, 1, i, false);
-            event_user(i);
+            event_perform(ev_alarm, i);
         }
     }
 }
