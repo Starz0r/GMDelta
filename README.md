@@ -32,7 +32,7 @@ that you open up a Issue on the GitHub Repoisitory and we will try to get to it 
 Documentation will always be update-to-date with the current version of the release, pre-releases will get their own branch and
 possible documentation if needed.
 
-[ReadTheDocs for Release]()
+[ReadTheDocs for Latest](https://gmdelta.readthedocs.org/en/latest/)
 
 ## Support
 
