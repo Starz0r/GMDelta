@@ -1,6 +1,6 @@
 # GMDelta
 
-This project was developed by [Starz0r](https://www.github.com/starz0r) and [Sudnep](https://www.github.com/evanmrrettman) as 
+This project was developed by [Starz0r](https://github.com/starz0r) and [Sudnep](https://github.com/evanmrrettman) as 
 a easy way to remove a framerate cap from a GameMaker: Studio project with little to no effort required.
 
 ## Introduction
